@@ -33,12 +33,13 @@ namespace PersonList
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.dgView1 = new System.Windows.Forms.DataGridView();
+            this.currentweek = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgView1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(27, 43);
+            this.btnAdd.Location = new System.Drawing.Point(21, 22);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(155, 56);
             this.btnAdd.TabIndex = 0;
@@ -48,7 +49,7 @@ namespace PersonList
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(27, 299);
+            this.btnDelete.Location = new System.Drawing.Point(21, 207);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(155, 56);
             this.btnDelete.TabIndex = 1;
@@ -58,7 +59,7 @@ namespace PersonList
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(27, 171);
+            this.btnEdit.Location = new System.Drawing.Point(21, 116);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(155, 56);
             this.btnEdit.TabIndex = 2;
@@ -77,11 +78,22 @@ namespace PersonList
             this.dgView1.TabIndex = 6;
             this.dgView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgView1_CellContentClick);
             // 
+            // currentweek
+            // 
+            this.currentweek.Location = new System.Drawing.Point(31, 354);
+            this.currentweek.Name = "currentweek";
+            this.currentweek.Size = new System.Drawing.Size(145, 56);
+            this.currentweek.TabIndex = 7;
+            this.currentweek.Text = "Birthday";
+            this.currentweek.UseVisualStyleBackColor = true;
+            this.currentweek.Click += new System.EventHandler(this.currentweek_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1013, 450);
+            this.Controls.Add(this.currentweek);
             this.Controls.Add(this.dgView1);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnDelete);
@@ -99,5 +111,6 @@ namespace PersonList
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.DataGridView dgView1;
+        private System.Windows.Forms.Button currentweek;
     }
 }

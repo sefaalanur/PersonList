@@ -1,12 +1,7 @@
 ﻿using Npgsql;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PersonList
@@ -79,5 +74,58 @@ namespace PersonList
                 }
             }
         }
+        void birthdaycurrentweek()
+        {
+            try
+            {
+                DateTime startOfWeek = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
+                DateTime endOfWeek = startOfWeek.AddDays(7);
+
+                NpgsqlCommand cmd = new NpgsqlCommand();
+                cmd.Connection = conn;
+                conn.Open();
+                cmd.CommandText = "SELECT name, birthday FROM persons";
+                NpgsqlDataReader reader = cmd.ExecuteReader();
+
+                bool found = false;
+                while (reader.Read())
+                {
+                    DateTime birthday = (DateTime)reader["birthday"];
+                    int day = birthday.Day;
+                    int month = birthday.Month;
+
+                    if (birthday >= startOfWeek && birthday < endOfWeek)
+                    {
+                    
+                        MessageBox.Show(string.Format("{0} has a birthday on {1:dd/MM/yyyy}", reader["name"], birthday));
+                    found = true;
+                    }
+                }
+
+               
+                if (!found)
+                {
+                    MessageBox.Show("No birthdays found in this week");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                if (conn.State != ConnectionState.Closed)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        private void currentweek_Click(object sender, EventArgs e)
+        {
+            birthdaycurrentweek();
+        }
     }
-}
+        
+    }
+

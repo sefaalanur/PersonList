@@ -1,12 +1,7 @@
 ﻿using Npgsql;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PersonList
@@ -16,7 +11,7 @@ namespace PersonList
         public FormDelete()
         {
             InitializeComponent();
-            displayPerson();
+            
         }
         NpgsqlConnection conn = new NpgsqlConnection(@"Server=localhost;Port=5434;User Id=postgres;Password=sefa2024;Database=PhoneContact");
 
