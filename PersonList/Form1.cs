@@ -40,7 +40,7 @@ namespace PersonList
                 NpgsqlCommand cmd = new NpgsqlCommand();
                 cmd.Connection = conn;
                 conn.Open();
-                cmd.CommandText = "SELECT * FROM persons";
+                cmd.CommandText = "SELECT * FROM persons ORDER BY id ASC ";
                 NpgsqlDataReader dr = cmd.ExecuteReader();
 
                 List<person> persons = new List<person>();
