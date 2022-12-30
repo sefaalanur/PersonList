@@ -76,7 +76,6 @@ namespace PersonList
             this.dgView1.RowTemplate.Height = 24;
             this.dgView1.Size = new System.Drawing.Size(607, 383);
             this.dgView1.TabIndex = 6;
-            this.dgView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgView1_CellContentClick);
             // 
             // currentweek
             // 

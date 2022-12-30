@@ -32,10 +32,6 @@ namespace PersonList
             formDelete.Show();
         }
 
-        private void dgView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
         void displayPerson()
         {
             try
@@ -78,8 +74,6 @@ namespace PersonList
         {
             try
             {
-                DateTime startOfWeek = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
-                DateTime endOfWeek = startOfWeek.AddDays(7);
 
                 NpgsqlCommand cmd = new NpgsqlCommand();
                 cmd.Connection = conn;
@@ -90,11 +84,14 @@ namespace PersonList
                 bool found = false;
                 while (reader.Read())
                 {
+                    DateTime currentDate = DateTime.Today;
+                    int thisdate = currentDate.Day;
+                    int thismonth = currentDate.Month;
                     DateTime birthday = (DateTime)reader["birthday"];
                     int day = birthday.Day;
                     int month = birthday.Month;
 
-                    if (birthday >= startOfWeek && birthday < endOfWeek)
+                    if (thisdate+7 >=  day && thismonth==month)
                     {
                     
                         MessageBox.Show(string.Format("{0} has a birthday on {1:dd/MM/yyyy}", reader["name"], birthday));
@@ -125,6 +122,8 @@ namespace PersonList
         {
             birthdaycurrentweek();
         }
+
+
     }
         
     }
