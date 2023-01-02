@@ -14,22 +14,79 @@ namespace PersonList
             displayPerson();
         }
         NpgsqlConnection conn = new NpgsqlConnection(@"Server=localhost;Port=5434;User Id=postgres;Password=sefa2024;Database=PhoneContact");
+        void deletePerson(int id)
+        {
+            if (id > 0)
+            {
+                try
+                {
+
+                    NpgsqlCommand cmd = new NpgsqlCommand();
+                    cmd.Connection = conn;
+                    conn.Open();
+                    cmd.CommandText = "DELETE FROM persons WHERE id = @id";
+                    NpgsqlParameter param = new NpgsqlParameter();
+                    param.ParameterName = "id";
+                    param.NpgsqlDbType = NpgsqlTypes.NpgsqlDbType.Integer;
+                    param.Value = id;
+                    cmd.Parameters.Add(param);
+
+                    int i = cmd.ExecuteNonQuery();
+                    MessageBox.Show(i + "person deleted from the contact book");
+
+                }
+                catch (NpgsqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    if (conn.State != ConnectionState.Closed)
+                    {
+                        conn.Close();
+                    }
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Please enter a valid value!");
+            }
+        }
+        public void updateList()
+        {
+            displayPerson();
+        }
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            FormAdd formAdd = new FormAdd();
+            FormAdd formAdd = new FormAdd(this);
             formAdd.Show();
+
+            updateList();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            FormEdit formedit = new FormEdit();
+            FormEdit formedit = new FormEdit(this);
             formedit.Show();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            FormDelete formDelete = new FormDelete();
-            formDelete.Show();
+            int rowindex = dgView1.CurrentCell.RowIndex;
+
+            var id = dgView1.Rows[rowindex].Cells[0].Value.ToString();
+
+            int uid = Convert.ToInt32(id);
+            deletePerson(uid);
+
+            updateList();
+            //FormDelete formDelete = new FormDelete();
+            //formDelete.Show();
         }
 
         void displayPerson()

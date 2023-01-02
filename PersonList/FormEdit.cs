@@ -8,9 +8,12 @@ namespace PersonList
     public partial class FormEdit : Form
     {
         NpgsqlConnection conn = new NpgsqlConnection(@"Server=localhost;Port=5434;User Id=postgres;Password=sefa2024;Database=PhoneContact");
-        public FormEdit()
+        private Form1 _form1;
+
+        public FormEdit(Form1 form1)
         {
             InitializeComponent();
+            _form1 = form1;
         }
 
 
@@ -56,6 +59,7 @@ namespace PersonList
                     conn.Close();
                 }
             }
+            _form1.updateList();
         }
     }
 }

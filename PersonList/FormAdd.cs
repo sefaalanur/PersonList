@@ -13,9 +13,11 @@ namespace PersonList
 {
     public partial class FormAdd : Form
     {
-        public FormAdd()
+        private Form1 _form1;
+        public FormAdd(Form1 form1)
         {
             InitializeComponent();
+            _form1 = form1;
         }
         NpgsqlConnection conn = new NpgsqlConnection(@"Server=localhost;Port=5434;User Id=postgres;Password=sefa2024;Database=PhoneContact");
         private void btnSave_Click(object sender, EventArgs e)
@@ -53,7 +55,8 @@ namespace PersonList
                 {
                     conn.Close();
                 }
-            }    
+            }
+            _form1.updateList();
         }
         
     }
