@@ -83,10 +83,11 @@ namespace PersonList
 
             int uid = Convert.ToInt32(id);
             deletePerson(uid);
-
+    // By commenting lines form 80-85 and adding lines 88-89 it will go to deleting person form page then we can delete person by writing id number.
             updateList();
             //FormDelete formDelete = new FormDelete();
-            //formDelete.Show();
+            //formDelete.Show(); 
+            // Just like this we can delete person with just clicking the row on the person list table.
         }
 
         void displayPerson()
